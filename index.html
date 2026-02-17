@@ -2,119 +2,23 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <title>Sevgililər Günü Animasiyası</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #fdf5e6;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
-
-        /* 1. AĞACIN GÖVDƏSİ */
-        .tree-trunk {
-            width: 20px;
-            height: 0; /* Başlanğıcda boyu sıfır */
-            background: #8b4513;
-            position: absolute;
-            bottom: 20%;
-            border-radius: 5px;
-            animation: growTrunk 2s forwards ease-in-out;
-        }
-
-        @keyframes growTrunk {
-            to { height: 150px; }
-        }
-
-        /* 2. ÜRƏK FORMASINDA ÇİÇƏKLƏR (YARPAQLAR) */
-        .heart-container {
-            position: absolute;
-            bottom: calc(20% + 150px);
-            width: 300px;
-            height: 250px;
-            opacity: 0;
-            animation: fadeIn 2s 2s forwards; /* Ağac böyüdükdən sonra başlayır */
-        }
-
-        .leaf {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: #ff4d6d;
-            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
-            animation: scatter 1s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* 3. YAZILAR */
-        .San_Valentin {
-            position: absolute;
-            top: 15%;
-            text-align: center;
-            width: 90%;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideDown 2s 4s forwards; /* Çiçəklərdən sonra gəlir */
-        }
-
-        @keyframes slideDown {
-            to { 
-                opacity: 1; 
-                transform: translateY(0);
-            }
-        }
-
-        h2 { color: #ff1a4d; font-size: 1.5rem; }
-        p { color: #555; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mənim Sevgim</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="San_Valentin">
-        <h2>Para el amor de mi vida</h2>
-        <p>Hər saniyə səni daha çox sevirəm...</p>
-        <div id="counter">355 gün 17 saat...</div>
+        <h2 class="title">Para el amor de mi vida</h2>
+        <p class="message">Mənimlə olduğun hər gün bir hədiyyədir...</p>
+        <div id="counter" class="timer">Yüklənir...</div>
     </div>
 
-    <div class="tree-trunk"></div>
-    <div class="heart-container" id="leaves"></div>
+    <div class="animation-wrapper">
+        <div class="tree-trunk"></div>
+        <div class="heart-container" id="leaves"></div>
+    </div>
 
-    <script>
-        // Ürək formasında yarpaqları yaratmaq üçün kiçik skript
-        const container = document.getElementById('leaves');
-        const leafCount = 80;
-
-        for (let i = 0; i < leafCount; i++) {
-            const leaf = document.createElement('div');
-            leaf.className = 'leaf';
-            
-            // Təsadüfi yerləşmə (ürək forması daxilində)
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const delay = Math.random() * 2;
-            const size = 10 + Math.random() * 15;
-
-            leaf.style.left = left + '%';
-            leaf.style.top = top + '%';
-            leaf.style.width = size + 'px';
-            leaf.style.height = size + 'px';
-            leaf.style.animationDelay = (2 + delay) + 's'; // Ağacdan sonra açılma
-            leaf.style.opacity = '0';
-            
-            // Ürək rənginin tonları
-            const colors = ['#ff4d6d', '#ff758f', '#ff8fa3', '#c9184a'];
-            leaf.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-            container.appendChild(leaf);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
